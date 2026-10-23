@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Unzip project
-        run: unzip -q VideoWallpaper.zip
+        run: unzip -q VideoWallpaper.zip && chmod -R u+rwX VideoWallpaper
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
