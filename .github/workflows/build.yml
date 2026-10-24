@@ -17,9 +17,11 @@ jobs:
         with:
           gradle-version: '8.6'
       - name: Build
-        working-directory: VideoWallpaper
-        run: gradle assembleDebug --no-daemon
+        env:
+          KEYSTORE_B64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: bash VideoWallpaper/ci-build.sh
       - uses: actions/upload-artifact@v4
         with:
           name: VideoWallpaper-APK
-          path: VideoWallpaper/app/build/outputs/apk/debug/app-debug.apk
+          path: VideoWallpaper/app/build/outputs/apk/*/*.apk
